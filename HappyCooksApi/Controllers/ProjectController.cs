@@ -84,5 +84,16 @@ namespace HappyCooksApi.Controllers
             return new NoContentResult();
         }
 
+        [HttpGet("name/{search}")]
+        public IEnumerable<Projects> GetByName(string search)
+        {
+            return _context.Projects.Where(t => t.DisplayName.Contains(search)).ToList();
+        }
+
+        [HttpGet("difficulty/{id}")]
+        public IEnumerable<Projects> GetByDifficulty(long id)
+        {
+            return _context.Projects.Where(t => t.DifficultyId == id).ToList();
+        }
     }
 }
